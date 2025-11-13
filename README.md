@@ -28,7 +28,7 @@ A Flutter-based mobile application that showcases top-rated freelancers, popular
 
 ### Prerequisites
 
-- Flutter SDK >= 3.25.4
+- Flutter SDK >= 3.35.4
 - Dart SDK >= 3.9.2
 - Android Studio or VS Code
 - Internet connection (to fetch API data)
