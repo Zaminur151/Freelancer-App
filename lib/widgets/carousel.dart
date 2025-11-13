@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:freelancer_app/provider/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -17,11 +16,11 @@ class CustomCarosel extends StatelessWidget {
       CarouselSlider.builder(
         itemCount: provider.caroselPath.length,
         options: CarouselOptions(
-          height: 160,
+          height: 140,
           autoPlay: true,
           enlargeCenterPage: true,
           viewportFraction: 0.9,
-          autoPlayInterval: const Duration(seconds: 5),
+          autoPlayInterval: const Duration(seconds: 3),
           autoPlayAnimationDuration: const Duration(milliseconds: 800),
           enableInfiniteScroll: true,
           onPageChanged: (index, reason) {

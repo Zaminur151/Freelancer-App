@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(height: 12,),
               PopulerServiceGrid(),
-              SizedBox(height: 24,),
+              SizedBox(height: 50,),
               JobPostBuilder(),
               SizedBox(height: 12,),
               Padding(
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(8),
                     color: AppColors.whiteColor
                   ),
-                  child: Center(child: Text("More", style: TextStyles.p1Reguler)),
+                  child: Center(child: Text("More", style: TextStyles.p1Reguler.copyWith(color: AppColors.blue400))),
                 ), 
               ),
               SizedBox(height: 24,),

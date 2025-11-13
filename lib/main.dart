@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:freelancer_app/app/view/color/color.dart';
-import 'package:freelancer_app/feature/view/home_page.dart';
 import 'package:freelancer_app/feature/view/navigate_page.dart';
 import 'package:freelancer_app/provider/home_provider.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +18,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
@@ -28,9 +26,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.backgroundColor,
         fontFamily: "Poppins",
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-
-        )
       ),
       home: NavigatePage(),
     );

@@ -41,7 +41,7 @@ class JobPostBuilder extends StatelessWidget {
                     CircleAvatar(
                         radius: 20,
                         backgroundColor: AppColors.backgroundColor,
-                        child: Icon(Icons.favorite_border_outlined),
+                        child: Icon(Icons.favorite_border_outlined,color: AppColors.blue600),
                       )
                   ],
                 ),

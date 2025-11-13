@@ -37,7 +37,7 @@ class PopulerServiceGrid extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 1,
-                color:  AppColors.blue900
+                color:  AppColors.blue50
               )
             ),
             child: Column(
@@ -61,7 +61,7 @@ class PopulerServiceGrid extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 20,
                         backgroundColor: AppColors.whiteColor,
-                        child: Icon(Icons.favorite_border_outlined),
+                        child: Icon(Icons.favorite_border_outlined,color: AppColors.blue600,),
                       )
                     ),
                     Positioned(
@@ -78,7 +78,7 @@ class PopulerServiceGrid extends StatelessWidget {
                     )
                   ],
                 ),
-                
+                SizedBox(height: 4,),
                 Row(
                   children: [
                     Icon(Icons.star_border),
