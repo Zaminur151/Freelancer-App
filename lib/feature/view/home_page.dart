@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20,),
+              const SizedBox(height: 40,),
               _userHeader(userName, userImage),
               const SizedBox(height: 24,),
               _searchBar(),
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(8),
                     color: AppColors.whiteColor
                   ),
-                  child: Center(child: Text("More", style: TextStyles.p1Reguler.copyWith(color: AppColors.blue400))),
+                  child: Center(child: Text("Load More", style: TextStyles.p1Reguler.copyWith(color: AppColors.blue400))),
                 ), 
               ),
               SizedBox(height: 24,),
