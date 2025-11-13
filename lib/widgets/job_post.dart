@@ -50,38 +50,22 @@ class JobPostBuilder extends StatelessWidget {
                 SizedBox(height: 12,),
                 Row(
                   children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundColor,
-                        borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Row(
+                    _textContainer(
+                     Row(
                         children: [
-                          Icon(Icons.work_outline,color: AppColors.secondaryColor),
+                          Icon(Icons.work_outline,color: AppColors.secondaryColor,size: 12,),
                           Text(" MidLevel",style: TextStyles.regular12.copyWith(color: AppColors.secondaryColor))
                         ],
-                      ),
+                      ), 
                     ),
                     SizedBox(width: 8,),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundColor,
-                        borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Text("Fixed",style: TextStyles.regular12.copyWith(color: Color(0xFF6A3BE8))),
+                    _textContainer(
+                      Text("Fixed",style: TextStyles.regular12.copyWith(color: Color(0xFF6A3BE8)))
                     ),
                     SizedBox(width: 8,),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundColor,
-                        borderRadius: BorderRadius.circular(100)
-                      ),
-                      child: Text("Sponsored",style: TextStyles.regular12),
-                    ),
-                    
+                    _textContainer(
+                      Text("Sponsored",style: TextStyles.regular12)
+                    )
                   ],
                 ),
                 SizedBox(height: 12,),
@@ -108,4 +92,15 @@ class JobPostBuilder extends StatelessWidget {
       ), 
       );
   }
+}
+
+Widget _textContainer(Widget widget){
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(80),
+      color: AppColors.backgroundColor,
+    ),
+    child: widget,
+  );
 }

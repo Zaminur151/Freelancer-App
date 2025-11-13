@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:freelancer_app/app/view/color/color.dart';
 import 'package:freelancer_app/app/view/style/text_style.dart';
+import 'package:freelancer_app/models/freelancer_model.dart';
+import 'package:freelancer_app/provider/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class TopFreelancerGrid extends StatelessWidget {
   const TopFreelancerGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<HomeProvider>(context);
+
+    if (provider.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (provider.error != null) {
+      return Center(child: Text('Error: ${provider.error}'));
+    }
+
+    if (provider.freelancers.isEmpty) {
+      return const Center(child: Text('No freelancers found.'));
+    }
+    
     return SizedBox(
       height: 200,
       width: double.infinity,
@@ -19,9 +36,10 @@ class TopFreelancerGrid extends StatelessWidget {
           mainAxisSpacing: 10,
           mainAxisExtent: 302, 
         ),
-        itemCount: 10,
+        itemCount: provider.freelancers.length,
         itemBuilder: (context, index) {
-          //final item = categories[index];
+
+          final Freelancer item = provider.freelancers[index];
           return 
             Container(
               padding: EdgeInsets.all(12),
@@ -36,10 +54,11 @@ class TopFreelancerGrid extends StatelessWidget {
                     children: [
                       Stack(
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             radius: 24,
                             backgroundImage: NetworkImage(
-                              'https://images.unsplash.com/photo-1560674457-12073ed6fae6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000'
+                              item.image != "https://xilancer.xgenious.com/assets/static/img/default-profile.png"?
+                              item.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-Ne7oVV6Lx9uAnmJDUZrrLcGy8yzo1sXdpQ&s"
                             ),
                           ),
                           Positioned(
@@ -49,9 +68,9 @@ class TopFreelancerGrid extends StatelessWidget {
                               width: 12,
                               height: 12,
                               decoration: BoxDecoration(
-                                color: AppColors.backgroundColor,
+                                color: item.isOnline? AppColors.secondaryColor : AppColors.blue400,
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2),
+                                border: Border.all(color: AppColors.whiteColor, width: 2),
                               ),
                             ),
                           ),
@@ -65,20 +84,22 @@ class TopFreelancerGrid extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "Esther Howard",
+                                  item.name,
                                   style: TextStyles.p1Reguler
                                 ),
                                 const SizedBox(width: 4),
-                                const Icon(Icons.verified, color: Colors.green, size: 16),
+                                if(item.isVerified)
+                                Icon(Icons.verified, color: AppColors.secondaryColor, size: 16),
                               ],
                             ),
-                            const Text(
-                              "UI/UX Designer",
-                              style: TextStyle(color: Colors.grey, fontSize: 13),
+                            Text(
+                              item.title,
+                              style: TextStyle(color: AppColors.blue300, fontSize: 13),
                             ),
                           ],
                         ),
                       ),
+                      if(item.experienceLevel == "senior")
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
@@ -86,13 +107,13 @@ class TopFreelancerGrid extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
-                          children: const [
-                          Icon(Icons.bolt, color: Colors.red, size: 14),
+                          children: [
+                          Icon(Icons.bolt, color: AppColors.primaryColor, size: 14),
                           SizedBox(width: 3),
                           Text(
                             "Pro",
                             style: TextStyle(
-                              color: Colors.red,
+                              color: AppColors.primaryColor,
                               fontWeight: FontWeight.w600,
                               fontSize: 13,
                             ),
@@ -120,19 +141,19 @@ class TopFreelancerGrid extends StatelessWidget {
                   _textRow(
                     Icons.star_border_outlined, 
                     "Review", 
-                    "4.5 (212 reviews)"
+                    "${item.statistics.averageRating} (${item.statistics.totalReviews} reviews)"
                   ),
                   SizedBox(height: 6,),
                   _textRow(
                     Icons.location_on_outlined, 
                     "Location", 
-                    "6391 Elgin St. Celina"
+                    item.location.country
                   ),
                   SizedBox(height: 6,),
                   _textRow(
-                    Icons.money_outlined, 
+                    Icons.attach_money_outlined, 
                     "Hourly Rate", 
-                    "\$83.00/hr"
+                    "\$${item.hourlyRate}/hr"
                   ),
                   
                 ],

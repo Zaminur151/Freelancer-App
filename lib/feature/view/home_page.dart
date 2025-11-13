@@ -10,15 +10,26 @@ import 'package:freelancer_app/widgets/populer_service_grid.dart';
 import 'package:freelancer_app/widgets/top_freelancer_grid.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-  
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    Future.microtask(() =>
+    Provider.of<HomeProvider>(context, listen: false).fetchFreelancers());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
 
     final provider = Provider.of<HomeProvider>(context);
+    final userName = "Zaminur Hasan";
+    final userImage = 'https://images.unsplash.com/photo-1560674457-12073ed6fae6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000';
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -28,10 +39,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20,),
-              _userHeader(
-                "Leslie Alexander", 
-                'https://images.unsplash.com/photo-1560674457-12073ed6fae6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000'
-              ),
+              _userHeader(userName, userImage),
               const SizedBox(height: 24,),
               _searchBar(),
               SizedBox(height: 24,),
@@ -62,9 +70,8 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Container(
-                  //height: ,
                   width: double.infinity,
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: AppColors.whiteColor
@@ -144,7 +151,7 @@ Widget _searchBar(){
           ),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: AppColors.whiteColor,
         contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
