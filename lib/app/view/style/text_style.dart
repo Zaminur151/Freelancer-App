@@ -23,4 +23,5 @@ class TextStyles {
 
   static TextStyle regular14 = p1Reguler.copyWith(fontSize: 14);
   static TextStyle regular12 = p1Reguler.copyWith(fontSize: 12,color: color1);
+  static TextStyle regular10 = regular12.copyWith(fontSize: 10);
 }
